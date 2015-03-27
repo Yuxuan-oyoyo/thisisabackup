@@ -1,12 +1,12 @@
 var firebase = require('firebase');
 
-var return_url = 'http://thisisabackup.herokuapp.com' + '/payment/execute';
-var cancel_url = 'http://thisisabackup.herokuapp.com' + '/payment/cancel/';
+var return_url = process.env.APP_BASE_URL + process.env.APP_PAYPAL_SUCCESS_CALLBACK;
+var cancel_url = process.env.APP_BASE_URL + process.env.APP_PAYPAL_CANCEL_CALLBACK;
 
 //create a firebase connection
-var firebaseRef = new firebase('https://foodlion.firebaseio.com/');
+var firebaseRef = new firebase(process.env.FIREBASE_URL);
 //authenticate with firebase server
-firebaseRef.authWithCustomToken('3fcyhCYBSB4Co98JwMDKakI6g7ipsRaZTmfzmzWz', function(error, authData){
+firebaseRef.authWithCustomToken(process.env.FIREBASE_TOKEN, function(error, authData){
     if(error){
         throw "Firebase Auth Failed for server!";
     }

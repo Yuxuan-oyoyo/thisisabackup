@@ -4,9 +4,9 @@ var model = require('./model.js');
 var paypal = require('paypal-rest-sdk');
 
 paypal.configure({
-    'mode': 'sandbox', //sandbox or live
-    'client_id': 'AbbG0Q_8CgHypsutsoBRGPrVQyA-wVCGna1fIm0r0TvaHKCrixWn2bTKndWfvlZ2WS-SXg0iyACgGuPq',
-    'client_secret': 'EGy2_mD5eyiG7IGb1PADqdqu0QoedajrJMdd8fnrxBpAE1zI_8wRxxYOB2wnsfWIE5o08qS7XEf8U9cx'
+    'mode': process.env.PAYPAL_MODE, //sandbox or live
+    'client_id': process.env.PAYPAL_CLIENT_ID,
+    'client_secret': process.env.PAYPAL_CLIENT_SECRET
 });
 
 //tells the server to look into the /public folder for the static content
@@ -90,7 +90,8 @@ app.get('/payment/execute/', function (req, res) {
                 throw error;
             }
             else{
-                res.json({'status':'success', 'data': agreement});
+                res.json({'status':'success', 'id': agreement});
+				//res.redirect("fire.html");
             }
         });
     }
@@ -114,7 +115,8 @@ app.get('/payment/cancel/:agreementId', function(req, res){
                     throw error;
                 }
                 //if cancelled, agreement.state == "Cancelled"
-                res.json({'status':'success', 'data': agreement});
+                res.json({'status':'success', 'id': agreement});
+				//res.redirect("fire.html");
             });
         }
     });
