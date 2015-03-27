@@ -4,9 +4,9 @@ var model = require('./model.js');
 var paypal = require('paypal-rest-sdk');
 
 paypal.configure({
-    'mode': process.env.PAYPAL_MODE, //sandbox or live
-    'client_id': process.env.PAYPAL_CLIENT_ID,
-    'client_secret': process.env.PAYPAL_CLIENT_SECRET
+    'mode': 'sandbox', //sandbox or live
+    'client_id': 'AbbG0Q_8CgHypsutsoBRGPrVQyA-wVCGna1fIm0r0TvaHKCrixWn2bTKndWfvlZ2WS-SXg0iyACgGuPq',
+    'client_secret': 'EGy2_mD5eyiG7IGb1PADqdqu0QoedajrJMdd8fnrxBpAE1zI_8wRxxYOB2wnsfWIE5o08qS7XEf8U9cx'
 });
 
 //tells the server to look into the /public folder for the static content
